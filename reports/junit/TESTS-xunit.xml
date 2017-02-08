@@ -1,0 +1,15 @@
+<unitTest version="1">
+  <file path="homePage">
+    <testCase name="should get task list via $httpBackend" duration="37"/>
+  </file>
+  <file path="openedTasks">
+    <testCase name="should have countOpenedTasks function" duration="4"/>
+    <testCase name="should show one uncompleted task" duration="2"/>
+  </file>
+  <file path="listOfTasks">
+    <testCase name="should store data to tasks variable" duration="5"/>
+  </file>
+  <file path="setSeverity">
+    <testCase name="should return default severity value" duration="2"/>
+  </file>
+</unitTest>

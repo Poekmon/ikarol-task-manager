@@ -1,0 +1,24 @@
+<!-- template for homePage component -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <form>
+               <div class="form-group">
+                 <h1>Current Task</h1>
+               </div>
+               <div class="form-group">
+                 <!-- current date -->
+                 <span>{{hpCtrl.date | date: 'MMMM dd, yyyy'}}</span>
+               </div>
+               <div class="form-group">
+                 <!-- shoud display number of open tasks -->
+                 <span id="opTasks">There are currently open {{hpCtrl.openTasks}} tasks</span>
+               </div>
+               <div class="form-group">
+                 <!-- button for list of taks view -->
+                 <a role="button" class="btn btn-success" href="#!/list">Manage Tasks</a>
+               </div>
+            </form>
+        </div>
+    </div>
+</div>

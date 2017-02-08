@@ -1,0 +1,11 @@
+<!-- top menu template -->
+<!-- nav bar -->
+<!-- active link with different style -->
+<nav class="navbar navbar-default">
+  <ul class="nav navbar-nav">
+    <li ng-repeat="opt in tmCtrl.nav" 
+      ng-class="{'active': $route.current.activetab==opt.tab}">
+        <a href="{{opt.link}}">{{opt.name}}</a>
+    </li>
+  </ul>
+</nav>

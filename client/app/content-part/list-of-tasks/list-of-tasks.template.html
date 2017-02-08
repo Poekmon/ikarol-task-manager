@@ -1,0 +1,89 @@
+<!-- template for listOfTasks component -->
+<div class=" contrainer col-md-10 col-md-offset-1">
+<!-- row with elements for creation of new task -->
+    <div class="row">
+        <div class="dropdown col-md-2">
+            <!-- dropdown button with menu -->
+            <button class="btn btn-primary dropdown-toggle" 
+              type="button" data-toggle="dropdown">{{lotCtrl.sevV}}
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <!-- menu with links inside -->
+                <li ng-repeat="sev in lotCtrl.severity">
+                  <a class="sev" 
+                    ng-click="lotCtrl.selectVal(sev)">Severity {{sev}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-5">
+            <!-- input for new task's name -->
+            <input id="input" type="text" class="form-control" 
+              placeholder="What do I need to do?" ng-model="lotCtrl.nameV">
+        </div>
+        <div class="col-md-2">
+            <!-- button to submit new task -->
+            <!-- will be disabled if one of input fields -->
+            <!-- won't be filled -->
+            <button class="btn btn-success" type="submit" 
+              ng-click="lotCtrl.addTask()" 
+                ng-disabled="lotCtrl.taskValidation()">Create Task</button>
+        </div>
+    </div>
+</div>
+<div class="container col-md-10 col-md-offset-1">
+    <!-- list of tasks in table -->
+    <table class="table table-striped col-md-10">
+    <caption>TODO List</caption>
+        <thead>
+            <tr>
+                <th id="sevCol" class="text-center" 
+                  ng-click="lotCtrl.sort()">
+                   <button class="btn btn-default">Severity
+                    <span ng-class="{'glyphicon glyphicon-arrow-up': lotCtrl.sortOrd,
+                      'glyphicon glyphicon-arrow-down': !lotCtrl.sortOrd}">
+                      </span></button></th>
+                <th id="taskCol" class="text-center">Task</th>
+                <th id="actCol" class="text-center">Actions</th>
+                <th id="compCol" class="text-center">Completed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="task in lotCtrl.tasks
+               | orderBy:lotCtrl.sortBySev:lotCtrl.sortOrd">
+            <!-- row with task data -->
+                <td class="text-center">{{task.severity}}</td>
+                <!-- severity -->
+                <td class="text-center">
+                <!-- if task is not completed show its name -->
+                  <span ng-if="!task.isEditing && !task.completed" 
+                    class="descr">{{task.name}}</span>
+                  <!-- if task is completed show its stikethrough'ed name -->
+                  <del ng-if="!task.isEditing && task.completed">{{task.name}}</del>
+                  <!-- if task is editing show input field -->
+                  <input type="text" ng-if="task.isEditing" 
+                    ng-model="task.tempTask" class="form-control input-sm">
+                </td>
+                <td class="text-center">
+                  <!-- in normal mode shows edit button -->
+                  <button class="btn btn-sm btn-info" type="button" 
+                    ng-if="!task.isEditing" ng-click="lotCtrl.changeMode(task)">Edit</button>
+                  <!-- in edit mode show save button -->
+                  <!-- will be disabled until -->
+                  <!-- input field for changing task will be filled -->
+                  <button class="btn btn-sm btn-primary" ng-if="task.isEditing" 
+                    ng-click="lotCtrl.saveTask(task._id,task)" 
+                      ng-disabled="lotCtrl.editValidation(task.tempTask)">Save</button>
+                  <!-- delete button in normal mode -->
+                  <button class="btn btn-sm btn-danger" type="button" 
+                    ng-if="!task.isEditing" ng-click="lotCtrl.delete(task._id,task)">Delete</button>
+                  <!-- cancel button to change mode to normal -->
+                  <button class="btn btn-sm btn-default" ng-if="task.isEditing" 
+                    ng-click="lotCtrl.changeMode(task)">Cancel</button>
+                </td>
+                <!-- checkbox for completed status -->
+                <td class="text-center"><input type="checkbox" 
+                  ng-model="task.completed" ng-click="lotCtrl.updateComp(task)"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

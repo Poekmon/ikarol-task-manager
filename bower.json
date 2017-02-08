@@ -1,0 +1,19 @@
+{
+  "name": "task-manager",
+  "description": "TODO SPA",
+  "main": "index.html",
+  "authors": [
+    "Ivan Karol <IKarol@gomel.iba.by>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "angular": "1.5",
+    "bootstrap": "^3.3.7",
+    "angular-route": "1.5",
+    "angular-mocks": "^1.6.1"
+  },
+  "resolutions": {
+    "angular": "1.5"
+  }
+}
